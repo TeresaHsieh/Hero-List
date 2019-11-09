@@ -7,6 +7,12 @@ const Reducer = (state = initState, action) => {
         allHeroData: action.allHeroData
       };
 
+    case "CURRENTCHOSENHERO":
+      return {
+        ...state,
+        currentChosenHero: action.currentHeroID
+      };
+
     default:
       return state;
   }
