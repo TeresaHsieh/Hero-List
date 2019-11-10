@@ -1,10 +1,9 @@
 import React from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Container from "@material-ui/core/Container";
 import Home from "./pages/Home";
 import HeroList from "./pages/HeroList";
 import NotFound from "./pages/NotFound";
+import { ResetStyle, GlobalStyle } from "../globalStyle";
 
 class App extends React.Component {
   constructor() {
@@ -15,17 +14,16 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <CssBaseline />
-        <Container fixed>
-          <BrowserRouter>
-            <Switch>
-              <Route exact path="/" component={HeroList} />
-              {/* Home */}
-              <Route path="/heroes" component={HeroList} />
-              <Route component={NotFound} />
-            </Switch>
-          </BrowserRouter>
-        </Container>
+        <ResetStyle />
+        <GlobalStyle />
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={Home} />
+            {/* Home */}
+            <Route path="/heroes" component={HeroList} />
+            <Route component={NotFound} />
+          </Switch>
+        </BrowserRouter>
       </>
     );
   }

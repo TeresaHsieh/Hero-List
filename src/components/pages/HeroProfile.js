@@ -12,12 +12,22 @@ class HeroProfile extends React.Component {
   componentDidMount() {}
 
   render() {
+    if (this.props.currentHeroPower) {
+      return (
+        <>
+          <div>STR {this.props.currentHeroPower.str}</div>
+          <div>INT {this.props.currentHeroPower.int}</div>
+          <div>AGI {this.props.currentHeroPower.agi}</div>
+          <div>LUK {this.props.currentHeroPower.luk}</div>
+        </>
+      );
+    }
     return (
       <>
-        <div>STR</div>
-        <div>INT</div>
-        <div>AGI</div>
-        <div>LUK</div>
+        <div> STR </div>
+        <div> INT </div>
+        <div> AGI </div>
+        <div> LUK </div>
       </>
     );
   }
@@ -25,7 +35,9 @@ class HeroProfile extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    heroData: state.allHeroData
+    heroData: state.allHeroData,
+    currentHero: state.currentChosenHero,
+    currentHeroPower: state.currentHeroPower
   };
 };
 
