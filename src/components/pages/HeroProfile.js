@@ -8,6 +8,7 @@ import styled from "styled-components";
 import LightBoxPoints from "../common/LightBoxPoints";
 import LightBoxSave from "../common/LightBoxSave";
 
+// Styled-components
 const PowerInfo = styled.div`
   color: white;
   display: flex;
@@ -15,6 +16,9 @@ const PowerInfo = styled.div`
   margin: 30px 0px;
   justify-content: space-around;
   width: 60%;
+  @media (max-width: 700px) {
+    width: 100%;
+  }
 `;
 
 const HeroProfileContainer = styled.div`
@@ -22,6 +26,9 @@ const HeroProfileContainer = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 25px;
+  @media (max-width: 700px) {
+    width: 40%;
+  }
 `;
 
 const RemainPointAndSave = styled.div`
@@ -33,6 +40,12 @@ const RemainPointAndSave = styled.div`
   color: white;
   font-size: 20px;
   letter-spacing: 2px;
+  @media (max-width: 700px) {
+    width: 30%;
+  }
+  @media (max-width: 460px) {
+    width: 40%;
+  }
 `;
 
 const SaveButton = styled.button`
@@ -54,8 +67,12 @@ const MainProfile = styled.button`
   justify-content: space-around;
   align-items: flex-end;
   letter-spacing: 2px;
+  @media (max-width: 850px) {
+    margin-bottom: 30px;
+  }
 `;
 
+// HeroProfile Component
 class HeroProfile extends React.Component {
   constructor(props) {
     super(props);

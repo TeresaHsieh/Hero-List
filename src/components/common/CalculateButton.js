@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+// Styled-components
 const CalculateButtonStyle = styled.button`
   width: 30px;
   background-color: rgb(218, 56, 50);
@@ -10,6 +11,7 @@ const CalculateButtonStyle = styled.button`
   border-radius: 10px;
 `;
 
+// CalculateButton Component
 class CalculateButton extends React.Component {
   constructor(props) {
     super(props);

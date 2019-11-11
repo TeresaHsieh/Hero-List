@@ -95,6 +95,9 @@ export const GlobalStyle = createGlobalStyle`
     background-repeat: no-repeat; 
     background-size: 100vw 100vh;
     letter-spacing: 2px;
+    @media (max-width: 850px) {
+      background-repeat: repeat-y; 
+  }
   }
 
   form {

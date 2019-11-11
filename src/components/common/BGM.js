@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
+// Styled-components
 const MusicPlayer = styled.img`
   width: 30px;
   position: absolute;
@@ -9,6 +10,7 @@ const MusicPlayer = styled.img`
   cursor: pointer;
 `;
 
+// BGM Component
 class BGM extends React.Component {
   constructor(props) {
     super(props);

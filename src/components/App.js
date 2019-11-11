@@ -5,6 +5,7 @@ import HeroList from "./pages/HeroList";
 import NotFound from "./pages/NotFound";
 import { ResetStyle, GlobalStyle } from "../globalStyle";
 
+// App Component
 class App extends React.Component {
   constructor() {
     super();
@@ -18,8 +19,7 @@ class App extends React.Component {
         <GlobalStyle />
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={HeroList} />
-            {/* Home */}
+            <Route exact path="/" component={Home} />
             <Route path="/heroes" component={HeroList} />
             <Route component={NotFound} />
           </Switch>

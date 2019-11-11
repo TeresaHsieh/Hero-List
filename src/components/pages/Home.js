@@ -3,6 +3,7 @@ import { withRouter } from "react-router-dom";
 import BGM from "../common/BGM";
 import styled from "styled-components";
 
+// Styled-components
 const BackGround = styled.div`
   position: relative;
 `;
@@ -31,6 +32,7 @@ const Intro = styled.div`
   transform: translate(-50%, -50%);
 `;
 
+// Home Component
 class Home extends React.Component {
   constructor() {
     super();

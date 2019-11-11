@@ -8,11 +8,13 @@ import BGM from "../common/BGM";
 import styled from "styled-components";
 import { saveHeroAllDataInRedux } from "../../store/Action";
 
+// Styled-components
 const HeroPicsContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-around;
-  width: 90%;
+  width: 100%;
   margin: auto;
 `;
 
@@ -25,6 +27,7 @@ const Loading = styled.div`
   color: white;
 `;
 
+// HeroList Component
 class HeroList extends React.Component {
   constructor(props) {
     super(props);

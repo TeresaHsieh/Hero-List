@@ -35,8 +35,7 @@ const NoteWords = styled.div`
   width: 300px;
 `;
 
-// NotFound Component
-
+// LightBoxSave Component
 class LightBoxSave extends React.Component {
   constructor(props) {
     super(props);

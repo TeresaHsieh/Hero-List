@@ -45,8 +45,7 @@ const ConfirmButton = styled.button`
   margin-top: 50px;
 `;
 
-// NotFound Component
-
+// LightBoxPoints Component
 class LightBoxPoints extends React.Component {
   constructor(props) {
     super(props);

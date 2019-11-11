@@ -6,11 +6,20 @@ import { currentChosenHero } from "../../store/Action";
 import { saveChosenHeroPowerToRedux } from "../../store/Action";
 import styled from "styled-components";
 
+// Styled-components
 const HeroPicAndName = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   color: white;
+
+  @media (max-width: 850px) {
+    margin-bottom: 20px;
+  }
+`;
+
+const HeroCards = styled.img`
+  margin-bottom: 30px;
   :hover {
     border: 2px solid transparent;
     background-image: linear-gradient(to right, #8f6b29, #fde08d),
@@ -26,10 +35,7 @@ const HeroPicAndName = styled.div`
   }
 `;
 
-const HeroCards = styled.img`
-  margin-bottom: 30px;
-`;
-
+// HeroCard Component
 class HeroCard extends React.Component {
   constructor(props) {
     super(props);
