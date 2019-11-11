@@ -16,6 +16,15 @@ const HeroPicsContainer = styled.div`
   margin: auto;
 `;
 
+const Loading = styled.div`
+  font-size: 50px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+`;
+
 class HeroList extends React.Component {
   constructor(props) {
     super(props);
@@ -44,7 +53,6 @@ class HeroList extends React.Component {
               <HeroCard eachData={eachHero} key={eachHero.id} />
             ))}
           </HeroPicsContainer>
-
           <Route
             path={`/heroes/:${this.props.currentHero}`}
             component={HeroProfile}
@@ -54,7 +62,7 @@ class HeroList extends React.Component {
     }
     return (
       <>
-        <div>Loading...</div>
+        <Loading>Loading...</Loading>
       </>
     );
   }

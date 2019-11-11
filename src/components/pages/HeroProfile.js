@@ -5,6 +5,7 @@ import { minusOne } from "../../store/Action";
 import { plusOne } from "../../store/Action";
 import CalculateButton from "../common/CalculateButton";
 import styled from "styled-components";
+import LightBox from "../common/LightBox";
 
 const PowerInfo = styled.div`
   color: white;
@@ -46,7 +47,7 @@ const SaveButton = styled.button`
 
 const MainProfile = styled.button`
   width: 90%;
-  margin: 80px auto 0px auto;
+  margin: 100px auto 0px auto;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -58,7 +59,8 @@ class HeroProfile extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      remainPoint: 0
+      remainPoint: 0,
+      showLightBox: false
     };
   }
 
@@ -71,7 +73,9 @@ class HeroProfile extends React.Component {
         remainPoint: prevState.remainPoint + 1
       }));
     } else {
-      console.log("低於");
+      this.setState({
+        showLightBox: !this.state.showLightBox
+      });
     }
   };
 
@@ -102,32 +106,6 @@ class HeroProfile extends React.Component {
         .catch(error => {
           console.log(error);
         });
-
-      // axios({
-      //   method: "Patch",
-      //   url: `https://hahow-recruit.herokuapp.com/heroes/${this.props.currentHero}/profile`,
-
-      //   data: this.props.currentHeroPower
-      // });
-
-      // axios({
-      //   method: "PATCH",
-      //   url: `https://hahow-recruit.herokuapp.com/heroes/${this.props.currentHero}/profile`,
-
-      //   data: this.props.currentHeroPower
-      // })
-      //   .then(res => {
-      //     if (res.data === "OK") {
-      //       console.log("oo");
-      //     }
-      //   })
-      //   .catch(() => {});
-
-      // axios
-      //   .patch(`https://hahow-recruit.herokuapp.com/heroes/${id}/profile`, body)
-      //   .then(() => {
-      //     dispatch({ type: PATCH_POWER_COMPLETE });
-      //   });
     }
   };
 
@@ -161,6 +139,7 @@ class HeroProfile extends React.Component {
               <SaveButton onClick={this.saveNewPoints}>儲存</SaveButton>
             </RemainPointAndSave>
           </MainProfile>
+          {this.state.showLightBox == true ? <LightBox /> : null}
         </>
       );
     }

@@ -11,6 +11,19 @@ const HeroPicAndName = styled.div`
   flex-direction: column;
   align-items: center;
   color: white;
+  :hover {
+    border: 2px solid transparent;
+    background-image: linear-gradient(to right, #8f6b29, #fde08d),
+      linear-gradient(to bottom, #fde08d, #df9f28),
+      linear-gradient(to left, #8f6b29, #fde08d),
+      linear-gradient(to top, #fde08d, #df9f28);
+    background-origin: border-box;
+    background-size: 100% 2px, 2px 100%, 100% 2px, 2px 100%;
+    background-position: top left, top right, bottom right, bottom left;
+    background-repeat: no-repeat;
+    padding: 10px;
+    border-radius: 5px;
+  }
 `;
 
 const HeroCards = styled.img`
