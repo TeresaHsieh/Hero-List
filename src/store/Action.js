@@ -18,3 +18,17 @@ export const saveChosenHeroPowerToRedux = currentHeroPower => {
     dispatch({ type: "SAVE_CHOSEN_HERO_POWER_TO_REDUX", currentHeroPower });
   };
 };
+
+export const minusOne = currentPowerToUpdate => {
+  return (dispatch, getState) => {
+    console.log("成功進到 action4", currentPowerToUpdate);
+    dispatch({ type: "MINUS_ONE", currentPowerToUpdate });
+  };
+};
+
+export const plusOne = currentPowerToUpdate => {
+  return (dispatch, getState) => {
+    console.log("成功進到 action5", currentPowerToUpdate);
+    dispatch({ type: "PLUS_ONE", currentPowerToUpdate });
+  };
+};

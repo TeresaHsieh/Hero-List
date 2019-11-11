@@ -2,7 +2,6 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import BGM from "../common/BGM";
 import styled from "styled-components";
-import LogoImg from "../../img/logo.png";
 
 const BackGround = styled.div`
   position: relative;
@@ -18,7 +17,7 @@ const StartButton = styled.button`
 `;
 
 const Logo = styled.img`
-  width: 300px;
+  width: 250px;
   margin-bottom: 50px;
 `;
 
@@ -44,7 +43,7 @@ class Home extends React.Component {
         <BackGround>
           <BGM />
           <Intro>
-            <Logo src={LogoImg} />
+            <Logo src="https://firebasestorage.googleapis.com/v0/b/marvel-hero-list.appspot.com/o/logo.png?alt=media&token=48a0ed98-c145-4875-8898-876dbe913ff2" />
             <StartButton
               onClick={() => {
                 this.props.history.push("/heroes");

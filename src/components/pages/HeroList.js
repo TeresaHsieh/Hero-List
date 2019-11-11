@@ -4,7 +4,17 @@ import { connect } from "react-redux";
 import { Route } from "react-router-dom";
 import HeroCard from "../common/HeroCard";
 import HeroProfile from "./HeroProfile";
+import BGM from "../common/BGM";
+import styled from "styled-components";
 import { saveHeroAllDataInRedux } from "../../store/Action";
+
+const HeroPicsContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 90%;
+  margin: auto;
+`;
 
 class HeroList extends React.Component {
   constructor(props) {
@@ -28,11 +38,12 @@ class HeroList extends React.Component {
     if (this.props.heroData) {
       return (
         <>
-          <div>
+          <BGM />
+          <HeroPicsContainer>
             {this.props.heroData.map(eachHero => (
               <HeroCard eachData={eachHero} key={eachHero.id} />
             ))}
-          </div>
+          </HeroPicsContainer>
 
           <Route
             path={`/heroes/:${this.props.currentHero}`}

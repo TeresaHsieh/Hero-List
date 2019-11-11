@@ -94,6 +94,7 @@ export const GlobalStyle = createGlobalStyle`
     background-image: url("https://firebasestorage.googleapis.com/v0/b/marvel-hero-list.appspot.com/o/background.jpg?alt=media&token=80347e14-1c87-4852-973c-f37e5d11f1c3");
     background-repeat: no-repeat; 
     background-size: 100vw 100vh;
+    letter-spacing: 2px;
   }
 
   form {

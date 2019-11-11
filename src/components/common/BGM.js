@@ -1,6 +1,4 @@
 import React from "react";
-import Play from "../../img/play.png";
-import Pause from "../../img/pause.png";
 import styled from "styled-components";
 
 const MusicPlayer = styled.img`
@@ -15,7 +13,7 @@ class BGM extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      musicPlaying: false
+      musicPlaying: true
     };
 
     this.url =
@@ -24,9 +22,8 @@ class BGM extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ musicPlaying: !this.state.musicPlaying }, () => {
-      this.state.musicPlaying ? this.audio.play() : this.audio.pause();
-    });
+    this.audio.play();
+    this.setState({ musicPlaying: !this.state.musicPlaying });
   }
 
   togglePlayingMusic = () => {
@@ -35,14 +32,19 @@ class BGM extends React.Component {
     });
   };
 
+  componentWillUnmount() {
+    this.audio.pause();
+    this.setState({ musicPlaying: !this.state.musicPlaying });
+  }
+
   render() {
     return (
       <div>
         <button onClick={this.togglePlayingMusic}>
           {this.state.musicPlaying ? (
-            <MusicPlayer src={Play} />
+            <MusicPlayer src="https://firebasestorage.googleapis.com/v0/b/marvel-hero-list.appspot.com/o/play.png?alt=media&token=ceebe165-2592-43c6-aa19-0359f1018931" />
           ) : (
-            <MusicPlayer src={Pause} />
+            <MusicPlayer src="https://firebasestorage.googleapis.com/v0/b/marvel-hero-list.appspot.com/o/pause.png?alt=media&token=85d87720-103c-4666-a9dc-722820624e1d" />
           )}
         </button>
       </div>

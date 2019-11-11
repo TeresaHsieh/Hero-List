@@ -4,6 +4,18 @@ import { Route, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { currentChosenHero } from "../../store/Action";
 import { saveChosenHeroPowerToRedux } from "../../store/Action";
+import styled from "styled-components";
+
+const HeroPicAndName = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+`;
+
+const HeroCards = styled.img`
+  margin-bottom: 30px;
+`;
 
 class HeroCard extends React.Component {
   constructor(props) {
@@ -29,15 +41,10 @@ class HeroCard extends React.Component {
     return (
       <>
         <Link to={`/heroes/${this.props.eachData.id}`}>
-          <div
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            onClick={this.chooseThisHero}
-          >
-            <img src={this.props.eachData.image} className="HeroPhoto" />
-            {this.props.eachData.name}
-          </div>
+          <HeroPicAndName onClick={this.chooseThisHero}>
+            <HeroCards src={this.props.eachData.image} />
+            <div>{this.props.eachData.name}</div>
+          </HeroPicAndName>
         </Link>
       </>
     );

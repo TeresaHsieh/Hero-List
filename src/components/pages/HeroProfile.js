@@ -1,24 +1,166 @@
 import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
-import { saveHeroAllDataInRedux } from "../../store/Action";
+import { minusOne } from "../../store/Action";
+import { plusOne } from "../../store/Action";
+import CalculateButton from "../common/CalculateButton";
+import styled from "styled-components";
+
+const PowerInfo = styled.div`
+  color: white;
+  display: flex;
+  flex-direction: row;
+  margin: 30px 0px;
+  justify-content: space-around;
+  width: 60%;
+`;
+
+const HeroProfileContainer = styled.div`
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  font-size: 25px;
+`;
+
+const RemainPointAndSave = styled.div`
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  color: white;
+  font-size: 20px;
+  letter-spacing: 2px;
+`;
+
+const SaveButton = styled.button`
+  background-color: rgb(218, 56, 50);
+  color: white;
+  font-size: 20px;
+  letter-spacing: 2px;
+  border-radius: 10px;
+  padding: 10px 30px;
+  cursor: pointer;
+  margin-top: 20px;
+`;
+
+const MainProfile = styled.button`
+  width: 90%;
+  margin: 80px auto 0px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-end;
+  letter-spacing: 2px;
+`;
 
 class HeroProfile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      remainPoint: 0
+    };
   }
 
-  componentDidMount() {}
+  componentDidUpdate() {}
+
+  MinusOne = currentPowerToUpdate => {
+    if (this.props.currentHeroPower[currentPowerToUpdate.toLowerCase()] > 0) {
+      this.props.minusOne(currentPowerToUpdate);
+      this.setState(prevState => ({
+        remainPoint: prevState.remainPoint + 1
+      }));
+    } else {
+      console.log("低於");
+    }
+  };
+
+  PlusOne = currentPowerToUpdate => {
+    if (this.state.remainPoint > 0) {
+      this.props.plusOne(currentPowerToUpdate);
+      this.setState(prevState => ({
+        remainPoint: prevState.remainPoint - 1
+      }));
+    } else {
+      console.log("點數不夠加");
+    }
+  };
+
+  saveNewPoints = () => {
+    if (this.state.remainPoint == 0) {
+      console.log("save", this.props.currentHeroPower, this.props.currentHero);
+      let HeroId = Number(this.props.currentHero);
+
+      axios
+        .patch(
+          `https://hahow-recruit.herokuapp.com/heroes/${HeroId}/profile`,
+          this.props.currentHeroPower
+        )
+        .then(response => {
+          console.log("成功在 server 更新了", response);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+      // axios({
+      //   method: "Patch",
+      //   url: `https://hahow-recruit.herokuapp.com/heroes/${this.props.currentHero}/profile`,
+
+      //   data: this.props.currentHeroPower
+      // });
+
+      // axios({
+      //   method: "PATCH",
+      //   url: `https://hahow-recruit.herokuapp.com/heroes/${this.props.currentHero}/profile`,
+
+      //   data: this.props.currentHeroPower
+      // })
+      //   .then(res => {
+      //     if (res.data === "OK") {
+      //       console.log("oo");
+      //     }
+      //   })
+      //   .catch(() => {});
+
+      // axios
+      //   .patch(`https://hahow-recruit.herokuapp.com/heroes/${id}/profile`, body)
+      //   .then(() => {
+      //     dispatch({ type: PATCH_POWER_COMPLETE });
+      //   });
+    }
+  };
 
   render() {
+    const powerArray = ["STR", "INT", "AGI", "LUK"];
+
     if (this.props.currentHeroPower) {
       return (
         <>
-          <div>STR {this.props.currentHeroPower.str}</div>
-          <div>INT {this.props.currentHeroPower.int}</div>
-          <div>AGI {this.props.currentHeroPower.agi}</div>
-          <div>LUK {this.props.currentHeroPower.luk}</div>
+          <MainProfile>
+            <HeroProfileContainer>
+              {powerArray.map(eachPower => (
+                <PowerInfo key={eachPower}>
+                  <div>{eachPower}</div>
+                  <CalculateButton
+                    calculateOne={() => this.MinusOne(eachPower)}
+                    calculateType={"minus"}
+                  />
+                  <div>
+                    {this.props.currentHeroPower[eachPower.toLowerCase()]}
+                  </div>
+                  <CalculateButton
+                    calculateOne={() => this.PlusOne(eachPower)}
+                    calculateType={"plus"}
+                  />
+                </PowerInfo>
+              ))}
+            </HeroProfileContainer>
+            <RemainPointAndSave>
+              <div>剩餘點數 : {this.state.remainPoint}</div>
+              <SaveButton onClick={this.saveNewPoints}>儲存</SaveButton>
+            </RemainPointAndSave>
+          </MainProfile>
         </>
       );
     }
@@ -42,7 +184,14 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    minusOne: currentPowerToUpdate => {
+      dispatch(minusOne(currentPowerToUpdate));
+    },
+    plusOne: currentPowerToUpdate => {
+      dispatch(plusOne(currentPowerToUpdate));
+    }
+  };
 };
 
 export default connect(

@@ -18,7 +18,7 @@ class App extends React.Component {
         <GlobalStyle />
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route exact path="/" component={HeroList} />
             {/* Home */}
             <Route path="/heroes" component={HeroList} />
             <Route component={NotFound} />
