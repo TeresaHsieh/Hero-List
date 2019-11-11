@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Route, Link } from "react-router-dom";
+import { Route, Link, NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { currentChosenHero } from "../../store/Action";
 import { saveChosenHeroPowerToRedux } from "../../store/Action";
@@ -12,7 +12,6 @@ const HeroPicAndName = styled.div`
   flex-direction: column;
   align-items: center;
   color: white;
-
   @media (max-width: 850px) {
     margin-bottom: 20px;
   }
@@ -20,7 +19,10 @@ const HeroPicAndName = styled.div`
 
 const HeroCards = styled.img`
   margin-bottom: 30px;
-  :hover {
+`;
+
+const NavLinkStyle = styled(NavLink)`
+  &.active {
     border: 2px solid transparent;
     background-image: linear-gradient(to right, #8f6b29, #fde08d),
       linear-gradient(to bottom, #fde08d, #df9f28),
@@ -39,6 +41,7 @@ const HeroCards = styled.img`
 class HeroCard extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {};
   }
 
   chooseThisHero = () => {
@@ -58,12 +61,12 @@ class HeroCard extends React.Component {
   render() {
     return (
       <>
-        <Link to={`/heroes/${this.props.eachData.id}`}>
+        <NavLinkStyle to={`/heroes/${this.props.eachData.id}`}>
           <HeroPicAndName onClick={this.chooseThisHero}>
             <HeroCards src={this.props.eachData.image} />
             <div>{this.props.eachData.name}</div>
           </HeroPicAndName>
-        </Link>
+        </NavLinkStyle>
       </>
     );
   }

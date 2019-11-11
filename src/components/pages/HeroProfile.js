@@ -7,6 +7,8 @@ import CalculateButton from "../common/CalculateButton";
 import styled from "styled-components";
 import LightBoxPoints from "../common/LightBoxPoints";
 import LightBoxSave from "../common/LightBoxSave";
+import LightBoxNegative from "../common/LightBoxNegative";
+import LightBoxNoExtraPoints from "../common/LightBoxNoExtraPoints";
 
 // Styled-components
 const PowerInfo = styled.div`
@@ -79,7 +81,9 @@ class HeroProfile extends React.Component {
     this.state = {
       remainPoint: 0,
       showLightBoxPoints: false,
-      showLightBoxSave: false
+      showLightBoxSave: false,
+      showLightBoxNegativ: false,
+      showLightBoxNoExtraPoints: false
     };
   }
 
@@ -92,7 +96,18 @@ class HeroProfile extends React.Component {
         remainPoint: prevState.remainPoint + 1
       }));
     } else {
-      //   console.log("不可以是負的");
+      this.setState({
+        showLightBoxNegativ: !this.state.showLightBoxNegativ
+      });
+
+      setTimeout(
+        function() {
+          this.setState({
+            showLightBoxNegativ: !this.state.showLightBoxNegativ
+          });
+        }.bind(this),
+        1000
+      );
     }
   };
 
@@ -103,7 +118,18 @@ class HeroProfile extends React.Component {
         remainPoint: prevState.remainPoint - 1
       }));
     } else {
-      //   console.log("點數不夠加");
+      this.setState({
+        showLightBoxNoExtraPoints: !this.state.showLightBoxNoExtraPoints
+      });
+
+      setTimeout(
+        function() {
+          this.setState({
+            showLightBoxNoExtraPoints: !this.state.showLightBoxNoExtraPoints
+          });
+        }.bind(this),
+        2000
+      );
     }
   };
 
@@ -154,6 +180,10 @@ class HeroProfile extends React.Component {
             <LightBoxPoints closeLightBoxPoints={this.CloseLightBoxPoints} />
           ) : null}
           {this.state.showLightBoxSave == true ? <LightBoxSave /> : null}
+          {this.state.showLightBoxNegativ == true ? <LightBoxNegative /> : null}
+          {this.state.showLightBoxNoExtraPoints == true ? (
+            <LightBoxNoExtraPoints />
+          ) : null}
           <MainProfile>
             <HeroProfileContainer>
               {powerArray.map(eachPower => (
