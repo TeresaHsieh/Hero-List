@@ -48,7 +48,6 @@ class HeroCard extends React.Component {
         `http://hahow-recruit.herokuapp.com/heroes/${this.props.eachData.id}/profile`
       )
       .then(response => {
-        console.log(response);
         this.props.saveChosenHeroPowerToRedux(response.data);
       })
       .catch(error => {

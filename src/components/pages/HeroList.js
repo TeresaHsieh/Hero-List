@@ -38,7 +38,6 @@ class HeroList extends React.Component {
     axios
       .get("https://hahow-recruit.herokuapp.com/heroes")
       .then(response => {
-        console.log(response);
         this.props.saveHeroAllDataInRedux(response.data);
       })
       .catch(error => {
@@ -72,7 +71,6 @@ class HeroList extends React.Component {
 }
 
 const mapStateToProps = state => {
-  console.log("看看 state", state);
   return {
     heroData: state.allHeroData,
     currentHero: state.currentChosenHero

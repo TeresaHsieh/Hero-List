@@ -92,7 +92,7 @@ class HeroProfile extends React.Component {
         remainPoint: prevState.remainPoint + 1
       }));
     } else {
-      console.log("不可以是負的");
+      //   console.log("不可以是負的");
     }
   };
 
@@ -103,13 +103,12 @@ class HeroProfile extends React.Component {
         remainPoint: prevState.remainPoint - 1
       }));
     } else {
-      console.log("點數不夠加");
+      //   console.log("點數不夠加");
     }
   };
 
   saveNewPoints = () => {
     if (this.state.remainPoint == 0) {
-      console.log("save", this.props.currentHeroPower, this.props.currentHero);
       let HeroId = Number(this.props.currentHero);
 
       axios
@@ -118,7 +117,6 @@ class HeroProfile extends React.Component {
           this.props.currentHeroPower
         )
         .then(response => {
-          console.log("成功在 server 更新了", response);
           this.setState({
             showLightBoxSave: !this.state.showLightBoxSave
           });

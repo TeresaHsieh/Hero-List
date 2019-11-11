@@ -20,23 +20,17 @@ const Reducer = (state = initState, action) => {
       };
 
     case "MINUS_ONE":
-      console.log("看這裡", state, action.currentPowerToUpdate);
-
       state.currentHeroPower[action.currentPowerToUpdate.toLowerCase()] =
         state.currentHeroPower[action.currentPowerToUpdate.toLowerCase()] - 1;
 
-      console.log("改完後的 state", state);
       return {
         ...state
       };
 
     case "PLUS_ONE":
-      console.log("看這裡", state, action.currentPowerToUpdate);
-
       state.currentHeroPower[action.currentPowerToUpdate.toLowerCase()] =
         state.currentHeroPower[action.currentPowerToUpdate.toLowerCase()] + 1;
 
-      console.log("改完後的 state", state);
       return {
         ...state
       };
