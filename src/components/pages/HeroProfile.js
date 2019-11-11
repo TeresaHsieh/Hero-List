@@ -5,7 +5,8 @@ import { minusOne } from "../../store/Action";
 import { plusOne } from "../../store/Action";
 import CalculateButton from "../common/CalculateButton";
 import styled from "styled-components";
-import LightBox from "../common/LightBox";
+import LightBoxPoints from "../common/LightBoxPoints";
+import LightBoxSave from "../common/LightBoxSave";
 
 const PowerInfo = styled.div`
   color: white;
@@ -60,7 +61,8 @@ class HeroProfile extends React.Component {
     super(props);
     this.state = {
       remainPoint: 0,
-      showLightBox: false
+      showLightBoxPoints: false,
+      showLightBoxSave: false
     };
   }
 
@@ -73,9 +75,7 @@ class HeroProfile extends React.Component {
         remainPoint: prevState.remainPoint + 1
       }));
     } else {
-      this.setState({
-        showLightBox: !this.state.showLightBox
-      });
+      console.log("不可以是負的");
     }
   };
 
@@ -102,11 +102,31 @@ class HeroProfile extends React.Component {
         )
         .then(response => {
           console.log("成功在 server 更新了", response);
+          this.setState({
+            showLightBoxSave: !this.state.showLightBoxSave
+          });
+
+          setTimeout(
+            function() {
+              this.setState({ showLightBoxSave: !this.state.showLightBoxSave });
+            }.bind(this),
+            2000
+          );
         })
         .catch(error => {
           console.log(error);
         });
+    } else {
+      this.setState({
+        showLightBoxPoints: !this.state.showLightBoxPoints
+      });
     }
+  };
+
+  CloseLightBoxPoints = () => {
+    this.setState({
+      showLightBoxPoints: !this.state.showLightBoxPoints
+    });
   };
 
   render() {
@@ -115,6 +135,10 @@ class HeroProfile extends React.Component {
     if (this.props.currentHeroPower) {
       return (
         <>
+          {this.state.showLightBoxPoints == true ? (
+            <LightBoxPoints closeLightBoxPoints={this.CloseLightBoxPoints} />
+          ) : null}
+          {this.state.showLightBoxSave == true ? <LightBoxSave /> : null}
           <MainProfile>
             <HeroProfileContainer>
               {powerArray.map(eachPower => (
@@ -139,7 +163,6 @@ class HeroProfile extends React.Component {
               <SaveButton onClick={this.saveNewPoints}>儲存</SaveButton>
             </RemainPointAndSave>
           </MainProfile>
-          {this.state.showLightBox == true ? <LightBox /> : null}
         </>
       );
     }
